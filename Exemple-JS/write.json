@@ -1,0 +1,9 @@
+
+{
+    "personne": {
+        "nom": "Lucie",
+        "âge": 25,
+        "hobbies": ["lire", "nager", "jouer à l'échecs"]
+    }
+    
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deviner un Nombre</title>
+</head>
+<body>
+    <!--1.生成一个随机数0-99/2.有7次机会/3.如果猜对了，那么游戏结束，赢了/4.如果7次还没有猜对就输了。-->
+    <h1>Deviner un nombre</h1>
+    
+    <script>
+    let nombreRandom = Math.floor(Math.random()*100);
+
+    alert(nombreRandom);
+    let count = 3;
+    //let isSuccuss = false;
+    for (let i=0; i<count; i++){
+        let inputNum = Number(prompt("Entrer votre numéro"));
+        if(inputNum === nombreRandom){
+            alert("Vous êtes gagné !");
+            //isSuccuss = true;
+            break;
+        }else if(inputNum < nombreRandom){
+            alert("plus petit")
+        }else{
+            alert("plus grand")
+        };
+    
+        if(i === count - 1){
+            alert("vous êtes perdu !")
+        }
+        //if isSuccuss === false 然后 再显示 perdu
+    }
+        
+    
+    </script>
+</body>
+</html>
