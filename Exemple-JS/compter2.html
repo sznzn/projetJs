@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <title>Compter Switch</title>
+</head>
+<body>
+<h1>Calcultrice façon 2</h1>
+    <input type="number" id="first" value="0" placeholder="le premier nombre" />
+    <input type="number" id="second" value="0" placeholder="le deuxième nombre" />
+    <button id="add" data-operation="add">addition</button>
+    <button id="minus" data-operation="minus">soustraction</button>
+    <button id="times" data-operation="times">multiplication</button>
+    <button id="divide" data-operation="divide">division</button>
+    <p id="resultat">Résultat</p>
+    <script>
+    /* 需要注意的一些问题 */
+    //1.获取输入值的位置不对，输入值应该在点击事件处理函数中获取，而不是在页面加载时获取。
+    //2.switch语句的使用不正确，在switch语句中不能定义变量，应该在事件处理函数中获取按钮点击事件。
+
+    //方法2
+    document.addEventListener("click", function(event){
+        if(event.target.tagName === "BUTTON") {
+            let first = parseFloat(document.getElementById("first").value);
+            let second = parseFloat(document.getElementById("second").value);
+            let result;
+
+            switch (event.target.getAttribute("data-operation")){
+                case "add":
+                result = first + second;
+                break;
+                case "minus":
+                result = first - second;
+                break;
+                case "times":
+                result = first * second;
+                break;
+                case "divide":
+                if(second !== 0){
+                    result = first / second;
+                }else{
+                    result = "Erreur: division par zéro!";
+                }
+                break;
+
+                default:
+                result = "Erreur: Opération inconnue!";
+            }
+        document.getElementById("resultat").innerHTML = result;
+        }
+    })
+    </script>
+</body>
+</html>
