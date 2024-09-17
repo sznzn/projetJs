@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel</title>
+    <style>
+        /* 设置整个轮播图容器的样式 */
+        .main{
+            height: 450px;
+            background-color: bisque;
+            margin: auto;
+            width: 40%;
+            position:  relative; /*让图片和文字都能相对定位 */
+        }
+        /* 移除li默认的样式列表 */
+        li{
+            list-style: none;
+        }
+        /* 设置轮播图内容的样式 */
+        .banner{
+            border: 1px solid saddlebrown;
+            height: 100%;
+        }
+        /* 图片列表的样式 */
+        .image-list{
+            height: 85%;
+            overflow: hidden; /* 隐藏超出的部分 */
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+        /* 每个图片的样式 */
+        .image-list .item{
+            /* display: none;  默认所有图片都隐藏 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out; /*添加渐变效果*/
+        }
+        /* 显示当前活动图片 */
+        .image-list .item.active{
+            /* display: block; */
+            opacity: 1;
+        }
+        /* 设置图片宽度为容器的 100% */
+        .image-list img{
+            width: 100%;
+            height: auto;
+        }
+        /* 标题列表的样式 */
+        .title-list{
+            height: 15%;
+            display: flex;
+            justify-content: space-around;
+            align-items: stretch;
+            background-color: saddlebrown;
+            margin: 0;
+            padding: 0;
+            border-top: 1px solid saddlebrown;
+            /* border: 1px solid green; */
+        }
+        /* 每个标题样式 */
+        .title-list .item{
+            flex: 1; /* 每个item 占一份空间*/
+            text-align:center;
+            line-height:67.5px ;
+            /* background-color: rgb(115, 176, 176); */
+            
+        }
+        /* 当前激活的标题样式 */
+        .title-list .item.active a {
+            color: beige;
+            font-size: bold;
+        }
+        /* 默认标题的链接样式 */
+        .title-list a{
+            text-decoration: none;
+            color:black;
+            font-size: 20px;
+            
+            display: inline-block;
+            width: 100%;
+        }
+        /* 鼠标悬停时标题样式 */
+        .title-list a:hover{
+            color: cadetblue;
+            background-color: lightgray;
+        }
+            
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="banner">
+        <!-- 图片列表 -->
+                <ul class="image-list">
+                    <li class="item active">
+                        <a href="#">
+                            <img src="./images/daylily.jpg" alt="daylily">
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#">
+                            <img src="./images/mountain.jpg" alt="mountain">
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#">
+                            <img src="./images/sunflowers.jpg" alt="sunflowers">
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#">
+                            <img src="./images/peacock.jpg" alt="peacock">
+                        </a>
+                    </li>
+                </ul>
+            <!-- 标题列表 -->
+                <ul class="title-list">
+                    <li class="item active">
+                        <a href="#" data-target="0">daylily</a>
+                    </li>
+                    <li class="item">
+                        <a href="#" data-target="1">mountain</a>
+                    </li>
+                    <li class="item">
+                        <a href="#" data-target="2">sunflowers</a>
+                    </li>
+                    <li class="item">
+                        <a href="#" data-target="3">peacook</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        
+    </div>
+    <script>
+        let titleListEle = document.querySelector('.title-list')
+        let imageListEle = document.querySelector('.image-list')
+        
+        let activeItemEle = titleListEle.querySelector('.active')
+        let activeImgEle = imageListEle.querySelector('.active')
+        titleListEle.onmouseover = function(event){
+            let itemEle = event.target.parentElement
+            if(!itemEle.classList.contains('item')) return
+            activeItemEle.classList.remove('active')
+            itemEle.classList.add('active')
+            let targetIndex = parseInt(event.target.dataset.target)
+            // console.log(targetIndex);
+            let chosenImg = imageListEle.children[targetIndex]
+            activeImgEle.classList.remove('active')
+            chosenImg.classList.add('active')
+
+            activeItemEle = itemEle
+            activeImgEle = chosenImg
+            
+            }
+    </script>
+</body>
+</html>
